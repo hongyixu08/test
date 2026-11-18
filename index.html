@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMC 自习座位选择 · A/B 测试</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">🪑 CMC 自习座位选择 · A/B 测试</div>
+    <div class="session-info" id="session-info"></div>
+  </header>
+
+  <main>
+    <!-- 知情同意 / 分组 -->
+    <section class="screen" id="screen-consent">
+      <div class="card">
+        <h1>欢迎参与座位选择实验</h1>
+        <p class="muted">
+          本实验用于对比两种“找座位”交互方式，帮助你更快找到心仪座位。
+          你将在两种方式下分别完成 3 个小任务，并在每组任务后填写一份简短问卷。
+          全程约 10 分钟，数据仅用于课程研究，匿名记录。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>被试信息</h2>
+        <div class="field">
+          <label for="subject-id">被试编号（由主试填写，如 P01）</label>
+          <input type="text" id="subject-id" placeholder="P01" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="group-select">分组（主试按随机化表指定；也可选“随机”）</label>
+          <select id="group-select">
+            <option value="random">🎲 自动随机（50% / 50%）</option>
+            <option value="1">组 1：先方案 A（筛选），后方案 B（推荐）</option>
+            <option value="2">组 2：先方案 B（推荐），后方案 A（筛选）</option>
+          </select>
+        </div>
+        <div class="check-line">
+          <input type="checkbox" id="consent-check">
+          <label for="consent-check" style="margin:0;font-weight:400">我已了解实验内容，自愿参与并同意记录匿名操作数据。</label>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px;">
+          <button class="btn btn-primary" id="btn-start">开始实验</button>
+          <a class="btn btn-ghost" href="#calibrate" id="btn-calibrate">🧭 研究者：座位打点标定工具</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 实验说明 -->
+    <section class="screen hidden" id="screen-instructions">
+      <div class="card">
+        <h1>实验说明</h1>
+        <p>
+          接下来你会遇到 <strong>3 个场景</strong>，每个场景都请你<strong>尽快找到并锁定一个符合要求的座位</strong>。
+          你会先后体验 <strong>两种不同的操作方式</strong>，每种方式各完成一遍这 3 个场景。
+        </p>
+        <h2 style="margin-top:18px">三个场景</h2>
+        <div id="instructions-scenarios"></div>
+        <p class="muted" style="margin-top:16px">
+          系统会后台记录你的操作耗时与点击，用于研究分析；请按自己真实的判断操作，不用刻意求快或求慢。
+        </p>
+        <div class="center" style="margin-top:20px">
+          <button class="btn btn-primary" id="btn-instructions-start">我明白了，开始</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 任务 -->
+    <section class="screen hidden" id="screen-task"></section>
+
+    <!-- 问卷 -->
+    <section class="screen hidden" id="screen-questionnaire"></section>
+
+    <!-- 完成 -->
+    <section class="screen hidden" id="screen-done"></section>
+
+    <!-- 标定工具 -->
+    <section class="screen hidden" id="screen-calibrate"></section>
+  </main>
+
+  <!-- 详情弹窗 -->
+  <div class="modal-backdrop hidden" id="modal">
+    <div class="modal-card" id="modal-card"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="calibrate.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
